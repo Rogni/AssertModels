@@ -11,11 +11,12 @@ import java.util.Map;
 
 /**
  * Asserted two IAbstractModel objects.
+ *
  */
 public class AssertModelDelegate {
 
     /**
-     *
+     * Get formatter classname
      * @return
      */
     public String getFormatter() {
@@ -23,8 +24,8 @@ public class AssertModelDelegate {
     }
 
     /**
-     *
-     * @param formatterName
+     * Set formatter classname
+     * @param formatterName classname
      * @throws ClassNotFoundException
      */
     public void setFormatter(String formatterName) throws ClassNotFoundException {
@@ -32,13 +33,10 @@ public class AssertModelDelegate {
         this.formatterName = formatterName;
     }
 
-    private String formatterName = "assertmodels.utils.OutputFormatter";
-
-    private Class formatterClass = OutputFormatter.class;
-
     /**
-     * @param expected
-     * @param received
+     * Assert IAbstractModel models.
+     * @param expected expected model of object
+     * @param received received model of object
      * @throws Exception
      */
     public void assertModels(IAbstractModel expected, IAbstractModel received) throws Exception {
@@ -46,10 +44,14 @@ public class AssertModelDelegate {
         if (expected == received) {
             return;
         }
-        Map<String, Object> expectedMap = expected.getValuesOfProperties();
-        Map<String, Object> receivedMap = received.getValuesOfProperties();
+        Map<String, Object> expectedMap = expected.getValuesForComparison();
+        Map<String, Object> receivedMap = received.getValuesForComparison();
         assertMaps(expectedMap, receivedMap);
     }
+
+    private String formatterName = "assertmodels.utils.OutputFormatter";
+
+    private Class formatterClass = OutputFormatter.class;
 
     /**
      *
@@ -79,8 +81,8 @@ public class AssertModelDelegate {
      */
     private boolean assertMap(String path, Map expected, Map received, IOutputFormatter formatter) throws Exception {
         Boolean throwEx = false;
-        Map<String, Object> expectedMap = new HashMap<>(expected);
-        Map<String, Object> receivedMap = new HashMap<>(received);
+        Map<Object, Object> expectedMap = new HashMap<Object, Object>(expected);
+        Map<Object, Object> receivedMap = new HashMap<Object, Object>(received);
         for (Object key : expectedMap.keySet()) {
             Object expectedValue = expectedMap.get(key);
             Object receivedValue = receivedMap.remove(key);
@@ -167,8 +169,8 @@ public class AssertModelDelegate {
             } else if (expectedValue instanceof IAbstractModel && receivedValue instanceof IAbstractModel) {
                 throwEx |= assertMap(
                     path + ".",
-                    ((IAbstractModel) expectedValue).getValuesOfProperties(),
-                    ((IAbstractModel) receivedValue).getValuesOfProperties(),
+                    ((IAbstractModel) expectedValue).getValuesForComparison(),
+                    ((IAbstractModel) receivedValue).getValuesForComparison(),
                     formatter
                 );
             } else {

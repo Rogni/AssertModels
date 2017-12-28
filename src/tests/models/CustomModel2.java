@@ -26,7 +26,7 @@ public class CustomModel2 implements IAbstractModel {
         this.childTest = childTest;
     }
 
-    public Map<String, Object> getValuesOfProperties() throws IllegalArgumentException, IllegalAccessException {
+    public Map<String, Object> getValuesForComparison() throws IllegalArgumentException, IllegalAccessException {
         Map<String, Object> result = new HashMap<>();
 
         result.put("title", childCustom.getTitle());

@@ -2,7 +2,6 @@ package tests.models;
 
 import assertmodels.IAbstractModel;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +39,7 @@ public class CustomModel1 implements IAbstractModel {
         return String.format("%s %s %s", getName(), getType(), getNumber());
     }
 
-    public Map<String, Object> getValuesOfProperties() throws IllegalArgumentException, IllegalAccessException {
+    public Map<String, Object> getValuesForComparison() throws IllegalArgumentException, IllegalAccessException {
         Map<String, Object> result = new HashMap<>();
         result.put("name", getName());
         result.put("type", getType());

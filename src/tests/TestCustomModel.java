@@ -7,6 +7,7 @@ import org.junit.Test;
 import tests.models.CustomModel1;
 import tests.models.CustomModel2;
 import tests.models.TestModel1;
+import tests.models.Model;
 
 import java.util.Date;
 
@@ -67,6 +68,14 @@ public class TestCustomModel {
 
 
         assertDelegate.assertModels(model1, model2);
+    }
+
+    @Test
+    public void test4() throws Exception {
+        Model father = new Model(0, "Oberon");
+        father.childs.add(new Model(1, "Corwin"));
+        father.childs.add(new Model(2, "Eric"));
+        System.out.print(father.getValuesForComparison());
     }
 
 
