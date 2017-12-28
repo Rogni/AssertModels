@@ -53,12 +53,6 @@ public class AssertModelDelegate {
 
     private Class formatterClass = OutputFormatter.class;
 
-    /**
-     * Assert Map models.
-     * @param expectedMap
-     * @param receivedMap
-     * @throws Exception
-     */
     private void assertMaps(Map expectedMap, Map receivedMap) throws Exception {
 
         IOutputFormatter formatter = (IOutputFormatter) formatterClass.getConstructor().newInstance();
@@ -70,15 +64,6 @@ public class AssertModelDelegate {
         }
     }
 
-    /**
-     *
-     * @param path
-     * @param expected
-     * @param received
-     * @param formatter
-     * @return
-     * @throws Exception
-     */
     private boolean assertMap(String path, Map expected, Map received, IOutputFormatter formatter) throws Exception {
         Boolean throwEx = false;
         Map<Object, Object> expectedMap = new HashMap<Object, Object>(expected);
@@ -108,15 +93,6 @@ public class AssertModelDelegate {
         return throwEx;
     }
 
-    /**
-     *
-     * @param path
-     * @param expected
-     * @param received
-     * @param formatter
-     * @return
-     * @throws Exception
-     */
     private boolean assertList(String path, List expected, List received, IOutputFormatter formatter) throws Exception {
         Boolean throwEx = false;
         if (expected == null) expected = new ArrayList();
@@ -136,15 +112,6 @@ public class AssertModelDelegate {
         return throwEx;
     }
 
-    /**
-     *
-     * @param path
-     * @param expectedValue
-     * @param receivedValue
-     * @param formatter
-     * @return
-     * @throws Exception
-     */
     private boolean assertObjects(String path, Object expectedValue, Object receivedValue, IOutputFormatter formatter) throws Exception {
         Boolean throwEx = false;
         try {
