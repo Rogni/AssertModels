@@ -54,7 +54,7 @@ public class AssertModelDelegate {
     private Class formatterClass = OutputFormatter.class;
 
     /**
-     *
+     * Assert Map models.
      * @param expectedMap
      * @param receivedMap
      * @throws Exception

@@ -9,7 +9,6 @@ import tests.models.CustomModel2;
 import tests.models.TestModel1;
 import tests.models.Model;
 
-import java.util.Date;
 
 public class TestCustomModel {
     AssertModelDelegate assertDelegate = new AssertModelDelegate();
